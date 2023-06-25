@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from .partial_settings.allowed_hosts import *
 from .partial_settings.apps import *
+from .partial_settings.celery import *
 from .partial_settings.db import *
 from .partial_settings.localisation import *
 from .partial_settings.logging import *

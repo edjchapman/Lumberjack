@@ -2,6 +2,13 @@
 # https://pypi.org/project/black/
 black==23.3.0
 
+# Periodic and Asynchronous Tasks
+celery[redis]==5.3.1
+
+# Python webserver and websocket support
+# https://github.com/django/channels
+channels==4.0.0
+
 # Web Framework
 # https://docs.djangoproject.com/en/3.1/
 Django==4.2.2
@@ -9,6 +16,14 @@ Django==4.2.2
 # Filter by date range on the Django admin
 # https://github.com/silentsokolov/django-admin-rangefilter
 django-admin-rangefilter==0.10.0
+
+# Django app for Celery Beat Scheduler
+# Stores the schedule in the DB and displays it in the admin
+# https://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html#using-custom-scheduler-classes
+django-celery-beat==2.5.0
+
+# Temporary fix for Celery Beat, v4.1 breaks Celery Beat crontab
+django-timezone-field==5.1
 
 # Dynamic filtering from URL parameters
 # https://pypi.org/project/django-filter/
@@ -18,6 +33,14 @@ django-filter==23.2
 # https://www.django-rest-framework.org/
 djangorestframework==3.14.0
 
+# Markdown
+# https://python-markdown.github.io/
+Markdown==3.4.3
+
 # Pre-commit hook framework
 # https://pypi.org/project/pre-commit/
 pre-commit==3.3.3
+
+# PostgreSQL database adapter for Python
+# https://www.psycopg.org/
+psycopg2-binary==2.9.6

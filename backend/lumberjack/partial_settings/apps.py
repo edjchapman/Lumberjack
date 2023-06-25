@@ -7,7 +7,12 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["rest_framework", "rangefilter"]
+THIRD_PARTY_APPS = [
+    "channels",
+    "django_celery_beat",
+    "rest_framework",
+    "rangefilter",
+]
 
 PROJECT_APPS = ["logs", "notifications", "utils"]
 
