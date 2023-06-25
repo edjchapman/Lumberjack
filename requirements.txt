@@ -17,3 +17,7 @@ django-filter==23.2
 # Django Rest Framework
 # https://www.django-rest-framework.org/
 djangorestframework==3.14.0
+
+# Pre-commit hook framework
+# https://pypi.org/project/pre-commit/
+pre-commit==3.3.3
