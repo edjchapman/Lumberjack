@@ -14,56 +14,54 @@ def mark_resolved(cls, request, queryset):
 @admin.register(ExceptionLog)
 class ExceptionLogAdmin(admin.ModelAdmin):
     fields = [
-        'project_name',
-        'appenv',
-        'app_location',
-        'created_at',
-        'level',
-        'subject',
-        'logger_name',
-        'path_name',
-        'func_name',
-        'line_num',
-        'traceback',
-        'resolved',
+        "project_name",
+        "appenv",
+        "app_location",
+        "created_at",
+        "level",
+        "subject",
+        "logger_name",
+        "path_name",
+        "func_name",
+        "line_num",
+        "traceback",
+        "resolved",
     ]
     readonly_fields = [
-        'project_name',
-        'appenv',
-        'app_location',
-        'created_at',
-        'level',
-        'subject',
-        'logger_name',
-        'path_name',
-        'func_name',
-        'line_num',
-        'traceback',
+        "project_name",
+        "appenv",
+        "app_location",
+        "created_at",
+        "level",
+        "subject",
+        "logger_name",
+        "path_name",
+        "func_name",
+        "line_num",
+        "traceback",
     ]
     list_display = [
-        'project_name',
-        'appenv',
-        'app_location',
-        'created_at',
-        'subject',
-        'resolved',
+        "project_name",
+        "appenv",
+        "app_location",
+        "created_at",
+        "subject",
+        "resolved",
     ]
-    list_editable = [
-        "resolved"
-    ]
+    list_editable = ["resolved"]
     list_filter = (
-        'project_name',
-        'appenv',
-        'app_location',
-        'resolved',
-        ('created_at', DateRangeFilter),
-        'logger_name',
+        "project_name",
+        "appenv",
+        "app_location",
+        "resolved",
+        ("created_at", DateRangeFilter),
+        "logger_name",
     )
     search_fields = [
-        'subject',
-        'logger_name',
-        'path_name',
-        'func_name',
+        "subject",
+        "logger_name",
+        "path_name",
+        "func_name",
     ]
     actions = [mark_resolved]
 

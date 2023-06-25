@@ -16,14 +16,13 @@ class ExceptionLog(models.Model):
     """
     Represents a message written to the logger.
     """
+
     project_name = models.CharField(max_length=100, db_index=True)
     appenv = models.CharField(max_length=100, db_index=True)
     app_location = models.CharField(max_length=100, db_index=True)
     created_at = models.DateTimeField()
     level = models.IntegerField(
-        choices=LogLevels.choices,
-        default=LogLevels.ERROR,
-        db_index=True
+        choices=LogLevels.choices, default=LogLevels.ERROR, db_index=True
     )
     subject = models.CharField(max_length=200)
     logger_name = models.CharField(max_length=100)

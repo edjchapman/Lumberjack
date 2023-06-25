@@ -1,3 +1,19 @@
+# Code Formatter
+# https://pypi.org/project/black/
+black==23.3.0
+
 # Web Framework
 # https://docs.djangoproject.com/en/3.1/
 Django==4.2.2
+
+# Filter by date range on the Django admin
+# https://github.com/silentsokolov/django-admin-rangefilter
+django-admin-rangefilter==0.10.0
+
+# Dynamic filtering from URL parameters
+# https://pypi.org/project/django-filter/
+django-filter==23.2
+
+# Django Rest Framework
+# https://www.django-rest-framework.org/
+djangorestframework==3.14.0

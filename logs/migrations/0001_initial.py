@@ -4,29 +4,49 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ExceptionLog',
+            name="ExceptionLog",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('project_name', models.CharField(db_index=True, max_length=100)),
-                ('appenv', models.CharField(db_index=True, max_length=100)),
-                ('app_location', models.CharField(db_index=True, max_length=100)),
-                ('created_at', models.DateTimeField()),
-                ('level', models.IntegerField(choices=[(0, 'Not Set'), (20, 'Info'), (30, 'Warning'), (10, 'Debug'), (40, 'Error'), (50, 'Fatal')], db_index=True, default=40)),
-                ('subject', models.CharField(max_length=200)),
-                ('logger_name', models.CharField(max_length=100)),
-                ('path_name', models.CharField(max_length=200)),
-                ('func_name', models.CharField(max_length=100)),
-                ('line_num', models.IntegerField()),
-                ('traceback', models.TextField()),
-                ('resolved', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("project_name", models.CharField(db_index=True, max_length=100)),
+                ("appenv", models.CharField(db_index=True, max_length=100)),
+                ("app_location", models.CharField(db_index=True, max_length=100)),
+                ("created_at", models.DateTimeField()),
+                (
+                    "level",
+                    models.IntegerField(
+                        choices=[
+                            (0, "Not Set"),
+                            (20, "Info"),
+                            (30, "Warning"),
+                            (10, "Debug"),
+                            (40, "Error"),
+                            (50, "Fatal"),
+                        ],
+                        db_index=True,
+                        default=40,
+                    ),
+                ),
+                ("subject", models.CharField(max_length=200)),
+                ("logger_name", models.CharField(max_length=100)),
+                ("path_name", models.CharField(max_length=200)),
+                ("func_name", models.CharField(max_length=100)),
+                ("line_num", models.IntegerField()),
+                ("traceback", models.TextField()),
+                ("resolved", models.BooleanField(default=False)),
             ],
         ),
     ]
