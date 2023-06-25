@@ -10,8 +10,8 @@ DEBUG = APPENV != "PRODUCTION"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-ROOT_URLCONF = "Lumberjack.urls"
+ROOT_URLCONF = "lumberjack.urls"
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY") if APPENV == "PRODUCTION" else "TEST"
 
-WSGI_APPLICATION = "Lumberjack.wsgi.application"
+WSGI_APPLICATION = "lumberjack.wsgi.application"

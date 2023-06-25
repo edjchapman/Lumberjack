@@ -12,7 +12,7 @@ DATABASES = {
     },
 }
 
-if "postgres" in DATABASES["default"]["ENGINE"]:
-    DATABASES["default"]["OPTIONS"] = {
-        "options": "-c search_path=lumberjack,lumberjack"
-    }
+# if "postgres" in DATABASES["default"]["ENGINE"]:
+#     DATABASES["default"]["OPTIONS"] = {
+#         "options": "-c search_path=lumberjack,lumberjack"
+#     }
