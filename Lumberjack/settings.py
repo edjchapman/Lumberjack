@@ -41,7 +41,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = ["rest_framework", "rangefilter"]
 
-PROJECT_APPS = ["logs"]
+PROJECT_APPS = ["logs", "utils"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
