@@ -28,25 +28,36 @@ services:
     env_file:
       - ./.env.dev
 
-#  # CELERY WORKER
-#  celery_worker:
-#    build: ./backend
-#    command: celery -A lumberjack worker --loglevel=INFO
-#    env_file:
-#      - ./.env.dev
-#    depends_on:
-#      - backend
-#    restart: always
-#
-#  # CELERY BEAT
-#  celery_beat:
-#    build: ./backend
-#    command: celery -A lumberjack beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
-#    env_file:
-#      - ./.env.dev
-#    depends_on:
-#      - backend
-#    restart: always
+  # REDIS
+  redis:
+    image: redis
+    restart: always
+
+  # CELERY WORKER
+  celery_worker:
+    build: ./backend
+    command: celery -A lumberjack worker --loglevel=INFO
+    volumes:
+      - ./backend/:/usr/src/backend/
+    restart: always
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - backend
+      - redis
+
+  # CELERY BEAT
+  celery_beat:
+    build: ./backend
+    command: celery -A lumberjack beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - ./backend/:/usr/src/backend/
+    restart: always
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - backend
+      - redis
 
 volumes:
   postgres_data:
