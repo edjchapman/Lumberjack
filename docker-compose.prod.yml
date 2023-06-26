@@ -1,0 +1,63 @@
+version: '3.1'
+
+services:
+
+  # PROXY
+  proxy:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - NGINX_SERVER_NAME=${NGINX_SERVER_NAME}
+    volumes:
+      - /volumes/nginx/ssl:/etc/nginx/ssl
+      - /volumes/media:/media/
+      - /volumes/static:/static/
+      - /volumes/logs/proxy:/var/log/nginx/
+      - ./proxy/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /volumes/logs:/logs/
+    depends_on:
+      - backend
+    restart: always
+
+  # REDIS
+  redis:
+    image: redis
+    restart: always
+
+  # BACKEND
+  backend:
+    build: ./backend
+    env_file:
+      - .env
+    command: daphne lumberjack.asgi:application --bind 0.0.0.0 --port 8000
+    volumes:
+      - /volumes/logs/backend:/logs/
+      - /volumes/media:/media/
+      - /volumes/static:/static/
+    depends_on:
+      - redis
+    restart: always
+
+  # CELERY WORKER
+  celery_worker:
+    build: ./backend
+    command: celery -A lumberjack worker --loglevel=INFO
+    env_file:
+      - .env
+    depends_on:
+      - backend
+      - redis
+    restart: always
+
+  # CELERY BEAT
+  celery_beat:
+    build: ./backend
+    command: celery -A lumberjack beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    env_file:
+      - .env
+    depends_on:
+      - backend
+      - redis
+    restart: always
