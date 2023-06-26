@@ -1,0 +1,69 @@
+worker_processes 4;
+events {
+    worker_connections 1024;
+}
+
+http {
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+    types_hash_max_size 2048;
+
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    upstream backend_servers {
+        server lumberjack_backend_1:8000;
+        server lumberjack_backend_2:8000;
+        server lumberjack_backend_3:8000;
+        server lumberjack_backend_4:8000;
+    }
+
+    server {
+        listen 80 default_server;
+        return 301 https://$host$request_uri;
+    }
+
+    server {
+        listen 443 ssl;
+        server_name SERVER_NAME_PLACEHOLDER;
+        ssl_certificate /etc/nginx/ssl/lumberjack.crt;
+        ssl_certificate_key /etc/nginx/ssl/lumberjack.key;
+        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_ciphers EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH;
+
+        # Django Media
+        location /media {
+            alias /media;
+            gzip_static on;
+            expires 1y;
+            add_header Cache-Control public;
+            add_header ETag "";
+            access_log off;
+        }
+
+        # Django Staticfiles
+        location /static {
+            alias /static;
+            gzip_static on;
+            expires 1y;
+            add_header Cache-Control public;
+            add_header ETag "";
+            access_log off;
+        }
+
+        location / {
+            proxy_pass http://backend_servers;
+            proxy_redirect off;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host $server_name;
+        }
+
+    }
+}
