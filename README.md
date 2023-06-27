@@ -1,7 +1,11 @@
 Lumberjack Log Server
 =====================
 
-Receive, organise and display logs, send email alert if surge detected
+- Receives logs via REST API
+- Logs can be searched, filtered analysed.
+- Celery tasks to
+  - Purge old logs
+  - Issue alert summary emails if the number of logs exceeds the threshold for a given period
 
 ---
 # Running Locally
