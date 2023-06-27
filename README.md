@@ -49,3 +49,12 @@ Log Detail
   <img src="https://github.com/edjchapman/Lumberjack/blob/main/.github/LogDetail.png" alt="Log Detail" />
 </a>
 </h1>
+
+Surge Alert Email
+
+<h1 align="center">
+  <br>
+  <a href="https://lumberjacklogs.website/">
+  <img src="https://github.com/edjchapman/Lumberjack/blob/main/.github/SurgeAlertEmail.png" alt="Surge Alert Email" />
+</a>
+</h1>
